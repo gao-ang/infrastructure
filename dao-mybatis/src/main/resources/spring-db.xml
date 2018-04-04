@@ -13,10 +13,14 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
+    <!-- 自定义TypeHandler -->
+    <bean id="upperCharToUnderLineTypeHandler" class="com.gasyz.mybatis.typehandlers.UpperCharToUnderLineTypeHandler"/>
+
     <!-- mybatis文件配置,mapper.xml文件扫描 -->
     <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/>
         <property name="dataSource" ref="dataSource"/>
+        <!--<property name="typeHandlers" ref="upperCharToUnderLineTypeHandler"/>-->
     </bean>
 
     <!-- mapper注解扫描器配置,扫描@MapperScan注解,自动生成代码对象 -->

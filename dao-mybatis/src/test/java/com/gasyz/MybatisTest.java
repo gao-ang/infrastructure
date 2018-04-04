@@ -41,11 +41,12 @@ public class MybatisTest extends BaseTest {
     @Test
     public void test2() {
         User user = new User();
-        user.setUsername("gaoang");
+        user.setUsername("gaoang2");
         user.setPassword("123");
+        user.setTelphone("13166660002");
         user.setGmtCreate(new Date());
         userMapper.insert(user);
         User user1 = userMapper.selectByPrimaryKey(1l);
-        System.out.println(user1);
+        System.out.println(user1.toString());
     }
 }
