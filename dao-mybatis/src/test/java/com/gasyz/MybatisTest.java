@@ -2,6 +2,7 @@ package com.gasyz;
 
 import com.gasyz.mybatis.mapper.UserMapper;
 import com.gasyz.mybatis.user.domain.User;
+import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 public class MybatisTest extends BaseTest {
 
@@ -48,5 +50,18 @@ public class MybatisTest extends BaseTest {
         userMapper.insert(user);
         User user1 = userMapper.selectByPrimaryKey(1l);
         System.out.println(user1.toString());
+    }
+
+    @Test
+    public void test3() {
+        User user1 = userMapper.selectByPrimaryKey(1l);
+        System.out.println(user1.toString());
+    }
+
+    @Test
+    public void pageHelperTest() {
+        PageHelper.startPage(1,2);
+        List<User> users = userMapper.selectAll();
+        System.out.println(users.size());
     }
 }

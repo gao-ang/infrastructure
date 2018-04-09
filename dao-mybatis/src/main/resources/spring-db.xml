@@ -16,11 +16,24 @@
     <!-- 自定义TypeHandler -->
     <bean id="upperCharToUnderLineTypeHandler" class="com.gasyz.mybatis.typehandlers.UpperCharToUnderLineTypeHandler"/>
 
+    <!--<bean id="pageHelper" class="com.github.pagehelper.PageHelper"/>-->
     <!-- mybatis文件配置,mapper.xml文件扫描 -->
     <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <!--<property name="typeHandlers" ref="upperCharToUnderLineTypeHandler"/>-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect = mysql
+                            reasonabel = true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- mapper注解扫描器配置,扫描@MapperScan注解,自动生成代码对象 -->
